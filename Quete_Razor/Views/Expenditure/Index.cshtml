@@ -1,0 +1,40 @@
+﻿
+@using Quete_Razor.Models
+ 
+@model List<Expenditure>
+
+@{
+    ViewData["Title"] = "Expenditure Page";
+}
+
+
+<h1>Liste des dépenses</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th> Nom du produit</th>
+            <th> Prix </th>
+            <th> Date d'achat </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Expenditure exp in Model)
+        {
+            <tr>
+                <td>@exp.Nom</td>
+                <td>@exp.Prix</td>
+                <td>@exp.Date.ToString("dd/MM/yyyy")</td>
+            </tr>
+
+        }
+        <tr>
+            <td>--------------------</td>
+        </tr>
+        <tr>
+            <td>Somme: <br />
+                @Model.Sum(exp => exp.Prix)
+            </td>
+        </tr>
+    </tbody>
+</table>
